@@ -1,0 +1,8 @@
+* {
+    box-sizing: border-box;
+}
+
+.jumbotron{
+    background: linear-gradient(rgba(11, 24, 99, 0.868), rgba(70, 150, 216, 0.925));
+}
+
