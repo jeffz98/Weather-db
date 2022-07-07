@@ -4,7 +4,7 @@ var userCitySearch = document.getElementById('chooseCity')
 var searchHistItems = document.getElementById('searchHist');
 var APIkey = '2815fbbd6ca34e187c4349caa83d3e2c'
 var currTimeUnix = moment().format('X');
-var currTimeDate = moment().format('LLLL');
+var currTimeDate = moment().format('l');
 var currCityDisplay = document.getElementById('currCityInfo');
 var citiesSearched = [];
 
@@ -86,10 +86,52 @@ function searchCity(info) {
             currUVIndex.textContent = 'UV Index: ';
             currUVIndex.appendChild(uvIndex);
             currCityDisplay.appendChild(currUVIndex);
-            console.log(currCityDisplay);
         });
         var fiveAPIUse = 'https://api.openweathermap.org/data/2.5/onecall?lat='+latitude+'&lon='+longitude+'&exclude=current,minutely,hourly,alerts&units=imperial&appid='+ APIkey;
+
+        fetch(fiveAPIUse).then(function(response){
+            return response.json();
+        }).then(function(data){
+            document.getElementById('cardContainer').innerHTML = '';
+            for(var i=1; i < 6; i++){
+                var presentCont= document.createElement('div');
+                var presentContHead = document.createElement('div');
+                var presentContBody = document.createElement('div');
+                var futureDate = document.createElement('h5');
+                var futureTemp = document.createElement('p');
+                var futureWind = document.createElement('p');
+                var futureHumid = document.createElement('p');
+                var futureIcon = document.createElement('img');
+                var presentContBody = document.createElement('div');
+                var dailyDataObj = data.daily[i];
+                presentCont.classList.add('card', 'mb-1', 'col-12', 'col-md-5', 'col-lg-2');
+                presentContHead.classList.add('card-header');
+                presentContBody.classList.add('card-body');
+                futureDate.classList.add('card-title');
+                var convertingUNIX = new Date(dailyDataObj.dt * 1000);
+                var foreCastMonth = convertingUNIX.toLocaleString("en-US",  {month: "numeric"});
+                var foreCastDay = convertingUNIX.toLocaleString("en-US",  {day: "numeric"});
+                var foreCastYear = convertingUNIX.toLocaleString("en-US",  {year: "numeric"});
+                var humanFormat = foreCastMonth+'/'+foreCastDay+'/'+ foreCastYear;
+                // console.log(humanFormat);
+                presentContHead.textContent = humanFormat;
+                
+                futureTemp.textContent = 'Temp: ' + dailyDataObj.temp.day + '\u2109';
+                futureWind.textContent = 'Wind: '+ dailyDataObj.wind_speed + 'MPH';
+                futureHumid.textContent = 'Humidity: ' + dailyDataObj.humidity + "%";
+                futureIcon.setAttribute('src',  'https://openweathermap.org/img/w/' + dailyDataObj.weather[0].icon + '.png');
+                futureIcon.setAttribute('alt',  'current weather icon');
+                presentCont.appendChild(presentContHead);
+                presentContBody.appendChild(futureIcon);
+                presentContBody.appendChild(futureTemp);
+                presentContBody.appendChild(futureWind);
+                presentContBody.appendChild(futureHumid);
+                presentCont.appendChild(presentContBody);
+                document.getElementById('cardContainer').appendChild(presentCont);               
+                }
+        });
     });
+    
 }
 
 
