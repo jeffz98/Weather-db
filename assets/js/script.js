@@ -26,7 +26,27 @@ userCitySearch.addEventListener('keyup', function(e){
     }
 })
 function searchCity(info) {
-    console.log("hi");
+    var openWeather = 'https://api.openweathermap.org/geo/1.0/direct?q='+ info + '&appid=' + APIkey;
+    fetch(openWeather)
+      .then(function(response) {
+        return response.json();
+    }).then(function(data){
+        currCityDisplay.textContent = '';
+        if(!citiesSearched.includes(data[0].name)){
+            var searchContainer = document.getElementById('searchHist');
+            var searchedItem = document.createElement('li');
+            searchedItem.classList.add('list-group-item' , 'prevCityList');
+            searchedItem.setAttribute('data-local', data[0].name);
+            searchedItem.textContent = data[0].name;
+            citiesSearched.push(data[0].name);
+            localStorage.setItem('search', JSON.stringify(citiesSearched));
+            searchContainer.appendChild(searchedItem);
+        }
+        var currHeading = document.createElement('h4')
+        currHeading.textContent = data[0].name + ": " + currTimeDate;
+        currCityDisplay.appendChild(currHeading);
+        console.log(citiesSearched)
+    });
 }
 
 
@@ -35,3 +55,7 @@ searchHistItems.addEventListener('click', function(e){
     searchCity(pressed.textContent);
 })
 
+// function refresh() {
+
+// }
+// refresh()
