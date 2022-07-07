@@ -21,3 +21,36 @@
     padding: .75em 1.5em .75em 1.5em;
     border-radius: 1em;
 }
+
+.findCity {
+    margin: 1rem;
+}
+
+.cityFinder button{
+    float: left;
+    width: 20%;
+    height: 3em;
+    border-bottom-left-radius:  0;
+    border-top-left-radius: 0;
+}
+.cityHist{
+    margin-top: 4em;
+}
+
+#currCityInfo{
+    border: 1px solid black;
+    margin-top: 2em;
+}
+#fiveDayFore{
+    margin: 1em;
+}
+.prevCityList{
+    background-color:  rgb(113, 118, 122);
+    color: black;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+.prevCityList:hover{
+    background-color: rgb(10, 30, 145);
+    cursor: pointer;
+}

@@ -22,7 +22,7 @@ userCitySearch.addEventListener('keyup', function(e){
         searchCity(searchInfo);
         userCitySearch.value = "";
     }else{
-        return
+        return;
     }
 })
 function searchCity(info) {
@@ -138,4 +138,4 @@ function searchCity(info) {
 searchHistItems.addEventListener('click', function(e){
     var pressed = e.target;
     searchCity(pressed.textContent);
-})
+});
