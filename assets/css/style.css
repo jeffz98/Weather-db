@@ -40,7 +40,10 @@
 #currCityInfo{
     border: 1px solid black;
     margin-top: 2em;
+    color: white;
+    background-color: rgb(175, 194, 140);
 }
+
 #fiveDayFore{
     margin: 1em;
 }
@@ -54,3 +57,4 @@
     background-color: rgb(10, 30, 145);
     cursor: pointer;
 }
+
