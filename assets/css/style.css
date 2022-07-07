@@ -2,25 +2,32 @@
     box-sizing: border-box;
 }
 
+/* styling for heading */
 .jumbotron{
     background: linear-gradient(rgba(11, 24, 99, 0.868), rgba(70, 150, 216, 0.925));
 }
 
+/* low uv indication of green */
 .uv_low{
     background-color: green;
     padding: .75em 1.5em .75em 1.5em;
     border-radius: 1em;
 }
+
+/* middle uv indication of yellow */
 .uv_middle{
     background-color: rgb(243, 196, 94);
     padding: .75em 1.5em .75em 1.5em;
     border-radius: 1em;
 }
+
+/* high uv indication of red */
 .uv_high{
     background-color: red;
     padding: .75em 1.5em .75em 1.5em;
     border-radius: 1em;
 }
+
 
 .findCity {
     margin: 1rem;
