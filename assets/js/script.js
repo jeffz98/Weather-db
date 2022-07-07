@@ -50,12 +50,28 @@ function searchCity(info) {
         var longitude = data[0].lon;
         var oneAPIUse = 'https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + latitude + '&lon=' + longitude +'&dt='+ currTimeUnix + '&units=imperial&appid=' + APIkey;
 
-        // fetch(oneAPIUse)      
-        //     .then(function(response){
-        //     return response.json();
-        // }).then(function(data){
-            
-        // });
+        fetch(oneAPIUse)      
+            .then(function(response){
+                return response.json();
+        }).then(function(data){
+            var weatherIcon = document.createElement('img');
+            weatherIcon.setAttribute('src', 'https://openweathermap.org/img/w/' + data.current.weather[0].icon + '.png');
+            weatherIcon.setAttribute('alt', data.current.weather[0].description);
+            currCityDisplay.appendChild(weatherIcon);
+            var uvIndex = document.createElement('span')
+            uvIndex.setAttribute('class', 'UVINcontainer')
+            uvIndex.textContent = data.current.uvi;
+            if(data.current.uvi < 5){
+                uvIndex.classList.add('uv_low')
+            }else if( data.current.uvi >= 5 && data.current.uvi < 10){
+                uvIndex.classList.add('uv_middle')
+            }else if(data.current.uvi >= 10){
+                uvIndex.classList.add('uv_high')
+            }else{
+                uvIndex.setAttribute('style', '')
+            }
+        });
+
     });
 }
 
