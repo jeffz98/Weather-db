@@ -140,6 +140,14 @@ searchHistItems.addEventListener('click', function(e){
     searchCity(pressed.textContent);
 })
 
+function cityList(data){
+    var searchHistCont = document.getElementById('searchHist');
+    var cityItem = document.createElement('li');
+    cityItem.classList.add('list-group-item' , 'oldCityList');
+    cityItem.textContent = data;
+    searchHistCont.appendChild(cityItem);
+}
+
 // function refresh() {
 
 // }
