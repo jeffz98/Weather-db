@@ -45,7 +45,17 @@ function searchCity(info) {
         var currHeading = document.createElement('h4')
         currHeading.textContent = data[0].name + ": " + currTimeDate;
         currCityDisplay.appendChild(currHeading);
-        console.log(citiesSearched)
+        // console.log(citiesSearched)
+        var latitude = data[0].lat;
+        var longitude = data[0].lon;
+        var oneAPIUse = 'https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + latitude + '&lon=' + longitude +'&dt='+ currTimeUnix + '&units=imperial&appid=' + APIkey;
+
+        // fetch(oneAPIUse)      
+        //     .then(function(response){
+        //     return response.json();
+        // }).then(function(data){
+            
+        // });
     });
 }
 
