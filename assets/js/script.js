@@ -70,8 +70,25 @@ function searchCity(info) {
             }else{
                 uvIndex.setAttribute('style', '')
             }
-        });
+            var currTemp = document.createElement('p')
+            currTemp.textContent = 'Temp: ' + data.current.temp + ' \u2109';
+            currCityDisplay.appendChild(currTemp);
 
+            var currWindSpeed = document.createElement('p')
+            currWindSpeed.textContent = 'Wind: ' + data.current.wind_speed + ' MPH';
+            currCityDisplay.appendChild(currWindSpeed);
+
+            var currHumidity = document.createElement('p')
+            currHumidity.textContent = 'Humidity: ' + data.current.humidity + '%';
+            currCityDisplay.appendChild(currHumidity);
+
+            var currUVIndex = document.createElement('p')
+            currUVIndex.textContent = 'UV Index: ';
+            currUVIndex.appendChild(uvIndex);
+            currCityDisplay.appendChild(currUVIndex);
+            console.log(currCityDisplay);
+        });
+        var fiveAPIUse = 'https://api.openweathermap.org/data/2.5/onecall?lat='+latitude+'&lon='+longitude+'&exclude=current,minutely,hourly,alerts&units=imperial&appid='+ APIkey;
     });
 }
 
